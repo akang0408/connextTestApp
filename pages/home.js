@@ -13,12 +13,12 @@ export default function Home(props) {
 }
 
 Home.getInitialProps = async function() {
-    const res = await fetch('https://api.quotable.io/random');
-    const data = await res.json();
-    console.log(`Quote data fetched. content is: ${data.content}`);
+  const res = await fetch('https://api.quotable.io/random');
+  const data = await res.json();
+  console.log(`Quote data fetched. content is: ${data.content}`);
 
-    return { 
-        quote: data.content,
-        author: data.author,
-        };
+  return { 
+    quote: data.content,
+    author: data.author,
+  };
 }

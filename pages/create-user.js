@@ -1,28 +1,77 @@
 /*eslint-disable*/
-
-
+import { useState } from 'react';
 
 export default function CreateUser() {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (event) => {
+    const bodyObj = {
+      name,
+      email,
+      username,
+      password,
+    };
+
+    fetch('/auth/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyObj),
+    })
+      .then((res) => res.json())
+      .then((user_id) => {
+        const [id, setId] = useState(user_id);
+      })
+      .catch((err) => { 
+        throw new Error(`${err}`)
+      });
+  };
+
   return (
     <div>
       <h1>Register</h1>
       <div>
         <span>name: </span>
-        <input type="text" id="registerName"></input>
+        <input 
+          type="text"
+          id="registerName"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
       </div>
       <div>
         <span>email: </span>
-        <input type="text" id="registerEmail"></input>
+        <input
+          type="text"
+          id="registerEmail"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
       </div>
       <div>
         <span>username: </span>
-        <input type="text" id="registerUsername"></input>
+        <input
+          type="text"
+          id="registerUsername"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+        />
       </div>
       <div>
         <span>password: </span>
-        <input type="text" id="registerPassword"></input>
+        <input
+          type="text"
+          id="registerPassword"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
       </div>
-      <button>register</button>
+      <button type="submit" onClick={handleSubmit}>register</button>
     </div>
   );
 }
