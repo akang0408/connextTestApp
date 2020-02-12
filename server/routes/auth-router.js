@@ -6,11 +6,12 @@ const authController = require('../controllers/auth-controller');
 // const taskController = require('../controllers/task-controller');
 
 router.post('/login', authController.userLogin, (req, res) => {
-  res.send();
+  res.json('login worked');
 });
 
 router.post('/create', authController.createUser, (req, res) => {
-  res.send();
+  console.log('res.locals: ', res.locals.user);
+  res.json('res.locals.user');
 });
 
 module.exports = router;

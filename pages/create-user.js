@@ -25,10 +25,12 @@ export default function CreateUser() {
     })
       .then((res) => res.json())
       .then((user_id) => {
-        const [id, setId] = useState(user_id);
+        console.log('user ID: ', user_id);
+        // const [id, setId] = useState(user_id);
+        // console.log(user_id);
       })
       .catch((err) => { 
-        throw new Error(`${err}`)
+        console.log(err);
       });
   };
 
