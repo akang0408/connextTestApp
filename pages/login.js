@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import { useState } from 'react';
+import Router from 'next/router';
 
 export default function Login() {
 
@@ -19,6 +20,15 @@ export default function Login() {
       },
       body: JSON.stringify(bodyObj),
     })
+    .then((data) => data.json())
+    .then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        document.cookie = `id=${res.id}; max-age=60*60*2`;
+        Router.push('/home');
+      }
+    })
+    .catch((err) => console.log(err))
   }
 
   return (

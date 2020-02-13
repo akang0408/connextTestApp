@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const authRouter = require('./routes/auth-router');
+const toDoRouter = require('./routes/toDoRoutes');
 
 const PORT = 3000;
 
@@ -15,6 +16,7 @@ app.prepare()
 
     server.use(express.json());
 
+
     server.use((req, res, next) => {
       console.log(`
     **FLOW TEST**
@@ -25,6 +27,7 @@ app.prepare()
     });
 
     server.use('/auth', authRouter);
+    server.use('/home', toDoRouter);
 
     server.get('*', (req, res) => {
       return handle(req, res);
@@ -32,3 +35,5 @@ app.prepare()
 
     server.listen(PORT, () => { console.log('ヾ(๑╹◡╹)ﾉ"'); });
   });
+
+module.exports = app;

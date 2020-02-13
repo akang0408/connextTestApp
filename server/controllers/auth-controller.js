@@ -30,6 +30,7 @@ authController.userLogin = (req, res, next) => {
     if (err) return next(err);
     if (response.rows[0]) {
       res.locals.id = response.rows[0].id;
+      res.locals.status = 200;
     }
     next();
   });
