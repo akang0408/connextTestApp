@@ -17,11 +17,11 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/login": [
+    "/home": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/next/dist/pages/_error": [
+    "/login": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

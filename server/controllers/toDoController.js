@@ -5,12 +5,14 @@ const toDoController = {};
 toDoController.createTasks = (req, res, next) => {
   console.log('req.body: ', req.body);
 
-  const { task } = req.body;
-  const { id } = res.locals;
+  const { task, id } = req.body;
+  // const { id } = res.locals;
+  const numId = Number(id);
 
-  const taskArr = [task, id];
+  const taskArr = [task, numId];
+  console.log(numId);
 
-  const queryString = 'INSERT INTO toDo (task, userID) VALUES ($1, $2);';
+  const queryString = 'INSERT INTO toDo (tasks, userid) VALUES ($1, $2);';
 
   db.query(queryString, taskArr, (err) => {
     if (err) {
@@ -24,10 +26,14 @@ toDoController.createTasks = (req, res, next) => {
 };
 
 toDoController.getAllTasks = (req, res, next) => {
-  const queryString = 'SELECT task FROM toDo';
+  console.log(req.params);
 
-  db.query(queryString, (err, response) => {
+  const params = [req.params.id];
+  const queryString = 'SELECT * FROM toDo WHERE userid = $1';
+
+  db.query(queryString, params, (err, response) => {
     if (err) {
+      console.log('ERROR', err);
       return next({
         log: 'error in getAllTasks',
         message: { err },
@@ -43,8 +49,8 @@ toDoController.getAllTasks = (req, res, next) => {
 };
 
 toDoController.deleteTask = (req, res, next) => {
-  const { taskID } = req.body;
-  const arr = [taskID];
+  const { id } = req.params;
+  const arr = [id];
   const queryString = 'DELETE from toDo WHERE id=$1';
   db.query(queryString, arr, (err) => {
     if (err) {
@@ -53,8 +59,8 @@ toDoController.deleteTask = (req, res, next) => {
         message: { err },
       });
     }
+    return next();
   });
-  return next();
 };
 
 module.exports = toDoController;

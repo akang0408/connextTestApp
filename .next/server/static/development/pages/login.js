@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -105,10 +105,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /*eslint-disable*/
+
 
 function Login() {
   const {
@@ -131,7 +134,14 @@ function Login() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(bodyObj)
-    });
+    }).then(data => data.json()).then(res => {
+      console.log(res);
+
+      if (res.status === 200) {
+        document.cookie = `id=${res.id}; max-age=60*60*2`;
+        next_router__WEBPACK_IMPORTED_MODULE_1___default.a.push('/home');
+      }
+    }).catch(err => console.log(err));
   };
 
   return __jsx("div", null, __jsx("h1", null, "Login"), __jsx("div", null, __jsx("span", null, "username: "), __jsx("input", {
@@ -152,7 +162,7 @@ function Login() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/login.js ***!
   \******************************/
@@ -161,6 +171,17 @@ function Login() {
 
 module.exports = __webpack_require__(/*! /Users/Eli/Coding/connextTestApp/pages/login.js */"./pages/login.js");
 
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
 
 /***/ }),
 
