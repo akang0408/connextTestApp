@@ -9840,7 +9840,7 @@ Home.getInitialProps = function _callee() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 4:
 /*!*******************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fhome&absolutePagePath=%2FUsers%2FEli%2FCoding%2FconnextTestApp%2Fpages%2Fhome.js ***!
   \*******************************************************************************************************************************/
@@ -9863,5 +9863,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[4,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=home.js.map
